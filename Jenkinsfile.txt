@@ -1,0 +1,36 @@
+pipeline {
+    agent {
+        kubernetes {
+        yaml '''
+        apiVersion: v1
+        kind: Pod
+        spec:
+          containers:
+          - name: maven
+            image: maven:alpine
+            command:
+            - cat
+            tty: true
+        '''
+        }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Creating txt file') {
+            steps {
+                echo 'Writing...'
+                writeFile file: 'groovy1.txt', text: 'Working with files the Groovy way is easy.'
+                sh 'ls -l groovy1.txt'
+                sh 'cat groovy1.txt'
+            }
+        }
+        stage('Testing') {
+            steps {
+                echo 'Testing....'
+            }
+        }
+}
