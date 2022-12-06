@@ -28,7 +28,7 @@ pipeline {
                 echo "Testing.."
                 sh '''
                 cd documents
-                cat HelloWorld.txt
+                find . -iname *.txt
                 '''
             }
         }
