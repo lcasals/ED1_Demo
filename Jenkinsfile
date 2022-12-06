@@ -27,7 +27,8 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
-                echo "doing test stuff.."
+                cd documents
+                HelloWorld.txt
                 '''
             }
         }
