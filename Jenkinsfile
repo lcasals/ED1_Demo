@@ -28,7 +28,7 @@ pipeline {
                 echo "Testing.."
                 sh '''
                 cd documents
-                HelloWorld.txt
+                cat HelloWorld.txt
                 '''
             }
         }
