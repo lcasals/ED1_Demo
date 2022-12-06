@@ -27,8 +27,7 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
-                cd documents
-                find . -iname *.txt
+                find ./documents -iname *.txt
                 '''
             }
         }
