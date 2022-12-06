@@ -17,20 +17,26 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                echo "Building.."
+                sh '''
+                echo "doing build stuff.."
+                '''
             }
         }
-        stage('Creating txt file') {
+        stage('Test') {
             steps {
-                echo 'Writing...'
-                writeFile file: 'groovy1.txt', text: 'Working with files the Groovy way is easy.'
-                sh 'ls -l groovy1.txt'
-                sh 'cat groovy1.txt'
+                echo "Testing.."
+                sh '''
+                echo "doing test stuff..
+                '''
             }
         }
-        stage('Testing') {
+        stage('Deliver') {
             steps {
-                echo 'Testing....'
+                echo 'Deliver....'
+                sh '''
+                echo "doing delivery stuff.."
+                '''
             }
         }
     }
