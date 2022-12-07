@@ -22,15 +22,15 @@ pipeline {
 
                 script {
                     echo "doing build stuff.."
-                    sh '''
-                    textFiles=$(find ./documents -iname *.txt)
-                    '''
+                    textFiles= sh(returnStdout: true, script: 'find ./documents -iname *.txt')
+                    echo "$textFiles"
                  }
             }
         }
         stage('Test') {
             steps {
                 echo "Testing.."
+                echo "$textFiles"
                 sh '''
                 for i in $textFiles; do echo $i; cat $i; done
                 '''
