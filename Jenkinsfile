@@ -1,4 +1,5 @@
 def textFiles = " "
+def server = Artifactory.server 'artifactory'
 pipeline {
     agent {
         kubernetes {
@@ -67,17 +68,21 @@ pipeline {
          stage('Upload to Artifactory') {
             steps {
                 echo 'Uploading....'
-                        rtUpload(
-                            serverId: 'artifactory',
-                            spec:"""{
-                                "files": [
-                                    {
-                                    "pattern": "./documents/HelloWorld.txt",
-                                    "target": "artifactory-practice/"
-                                    }
-                                ]
+                script {
+                    def texts = textFiles.split(' ')
+                    for (txt in texts) {
+                        sh "Uploading ${txt}"
+                        def uploadSpec = """{
+                            "files" : [
+                            {
+                                "pattern": "${txt}"
+                                "target": "artifactory-practice/"
+                               }
+                            ]
                         }"""
-                        )                             
+                        server.upload spec: uploadSpec
+                    }                           
+                }
             }
         }
     }
