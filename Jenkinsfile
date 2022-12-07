@@ -62,17 +62,19 @@ pipeline {
                     def texts = textFiles.split(' ')
                     for (txt in texts) {
                         sh "Uploading ${txt}"
+                        cd documents
                         rtUpload(
                             serverId: 'artifactory',
                             spec:"""{
                                 "files": [
                                     {
-                                    "pattern": "${txt}",
+                                    "pattern": "HelloWorld.txt",
                                     "target": "artifactory-practice/"
                                     }
                                 ]
                         }"""
-                        )  
+                        )
+                        cd ..
                     }
                 }                
             }
