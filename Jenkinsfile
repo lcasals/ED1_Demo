@@ -31,9 +31,9 @@ pipeline {
             steps {
                 echo "Testing.."
                 echo "$textFiles"
-                script {
-                sh "for i in $textFiles; do echo $i; cat $i; done"
-                }
+                sh """
+                for i in $textFiles; do echo $i; cat $i; done
+                """
             }
         }
         stage('Deliver') {
