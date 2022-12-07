@@ -74,7 +74,7 @@ pipeline {
                             spec:"""{
                                 "files": [
                                     {
-                                    "pattern": ".documents/",
+                                    "pattern": "$textFiles",
                                     "target": "artifactory-practice/"
                                     }
                                 ]
