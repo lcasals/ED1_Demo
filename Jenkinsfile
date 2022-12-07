@@ -19,18 +19,19 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building.."
-                sh '''
-                echo "doing build stuff.."
-                textFiles=$(find ./documents -iname *.txt)
-                '''
+                script{
+                    echo "doing build stuff.."
+                    textFiles=$(find ./documents -iname *.txt)
+                 }
             }
         }
         stage('Test') {
             steps {
                 echo "Testing.."
-                sh '''
-                for i in $textFiles; do echo $i; cat $i; done
-                '''
+                script{ 
+                    echo "doing testing stuff"
+                    for i in $textFiles; do echo $i; cat $i; done
+                }
             }
         }
         stage('Deliver') {
