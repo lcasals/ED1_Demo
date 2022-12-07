@@ -20,6 +20,7 @@ pipeline {
                 echo "Building.."
                 sh '''
                 echo "doing build stuff.."
+                textFiles=$(find ./documents -iname *.txt)
                 '''
             }
         }
@@ -27,7 +28,6 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
-                textFiles=$(find ./documents -iname *.txt)
                 for i in $textFiles; do echo $i; cat $i; done
                 '''
             }
