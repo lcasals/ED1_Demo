@@ -30,7 +30,7 @@ pipeline {
                 echo "Testing.."
                 script { 
                     echo "doing testing stuff"
-                    for i in $textFiles; do echo $i; cat $i; done
+                    
                 }
             }
         }
