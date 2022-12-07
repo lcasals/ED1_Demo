@@ -36,6 +36,7 @@ pipeline {
                     sh "echo ${txt}"
                     sh "cat ${txt}"    
                 }
+            }
         }
         stage('Deliver') {
             steps {
