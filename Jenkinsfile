@@ -27,7 +27,8 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
-                find ./documents -iname *.txt
+                textFiles=$(find ./documents -iname *.txt)
+                for i in $textFiles; do echo $i; cat $i; done
                 '''
             }
         }
