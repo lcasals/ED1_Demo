@@ -68,6 +68,7 @@ pipeline {
          stage('Upload to Artifactory') {
             steps {
                 echo 'Uploading....'
+                echo '[$textFiles]'
                rtUpload(
                             serverId: 'artifactory',
                             spec:"""{
