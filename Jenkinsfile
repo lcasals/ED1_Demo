@@ -74,10 +74,6 @@ pipeline {
                     for (txt in texts) {
                         sh "echo ${txt}"
                         sh "cat ${txt}"   
-                        rtserver(
-                            id: 'artifactory',
-                            url: 'https://artifactory.danr.dev/artifactory'
-                            )
                         rtUpload(
                             serverId: 'artifactory',
                             spec:"""{
