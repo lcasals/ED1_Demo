@@ -74,7 +74,7 @@ pipeline {
                             spec:"""{
                                 "files": [
                                     {
-                                    "pattern": "$textFiles.spilt(' ')",
+                                    "pattern": ".documents/HelloWorld.txt",
                                     "target": "artifactory-practice/"
                                     }
                                 ]
