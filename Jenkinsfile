@@ -15,6 +15,13 @@ pipeline {
         '''
         }
     }
+    options {
+    buildDiscarder(logRotator(numToKeepStr: '5'))
+    }
+    environment {
+      CI = true
+      ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
+    }
     stages {
         stage('Build') {
             steps {
@@ -46,6 +53,28 @@ pipeline {
                 sh '''
                 echo "doing delivery stuff.."
                 '''
+            }
+        }
+         stage('Upload to Artifactory') {
+            steps {
+                echo 'Uploading....'
+                script {
+                    def texts = textFiles.split(' ')
+                    for (txt in texts) {
+                        sh "Uploading ${txt}"
+                        rtUpload(
+                            serverId: 'artifactory',
+                            spec:'''{
+                                "files": [
+                                    {
+                                    "pattern": "${txt}",
+                                    "target": "artifactory-practice/"
+                                    }
+                                ]
+                        }'''
+                        )  
+                    }
+                }                
             }
         }
     }
