@@ -67,14 +67,10 @@ pipeline {
          stage('Upload to Artifactory') {
             steps {
                 echo 'Uploading....'
-                script {
-                    def texts = textFiles.split(' ')
-                    for (txt in texts) {
-                        sh "Uploading ${txt}"
-                        rtUpload(
-                            serverId: 'artifactory',
-                            spec:"""{
-                                "files": [
+                rtUpload(
+                    serverId: 'artifactory',
+                    spec:"""{
+                            "files": [
                                     {
                                     "pattern": "groovy1.txt",
                                     "target": "artifactory-practice/"
@@ -82,6 +78,10 @@ pipeline {
                                 ]
                         }"""
                         )
+                script {
+                    def texts = textFiles.split(' ')
+                    for (txt in texts) {
+                        sh "Uploading ${txt}"
                     }
                 }                
             }
