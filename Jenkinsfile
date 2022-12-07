@@ -31,10 +31,12 @@ pipeline {
             steps {
                 echo "Testing.."
                 echo "Test Step - Value of textFiles = $textFiles"
-                def texts = textFiles.split(' ')
-                for (txt in texts) {
-                    sh "echo ${txt}"
-                    sh "cat ${txt}"    
+                script {
+                    def texts = textFiles.split(' ')
+                    for (txt in texts) {
+                        sh "echo ${txt}"
+                        sh "cat ${txt}"    
+                    }
                 }
             }
         }
