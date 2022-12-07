@@ -1,4 +1,4 @@
-def textFiles = "test1"
+def textFiles = " "
 pipeline {
     agent {
         kubernetes {
@@ -19,26 +19,28 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building.."
+                sh '''
+                myTextFiles=$(find ./documents -iname *.txt)
+                '''
                 script {
-                    echo "doing build stuff.. $textFiles"
-                    textFiles="test2"
+                    echo "doing build stuff.."
+                    textFiles="$myTextFiles"
                  }
             }
         }
         stage('Test') {
             steps {
                 echo "Testing.."
-                script { 
-                    echo "doing testing stuff $textFiles"
-                    textFiles="test3"
-                }
+                sh '''
+                for i in $textFiles; do echo $i; cat $i; done
+                '''
             }
         }
         stage('Deliver') {
             steps {
                 echo 'Deliver....'
                 sh '''
-                echo "doing delivery stuff.. $textFiles"
+                echo "doing delivery stuff.."
                 '''
             }
         }
