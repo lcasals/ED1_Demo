@@ -30,7 +30,7 @@ pipeline {
                 echo "Testing.."
                 script { 
                     echo "doing testing stuff $textFiles"
-                    textFiles=test3
+                    textFiles="test3"
                 }
             }
         }
