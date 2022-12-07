@@ -1,3 +1,4 @@
+def textFiles = ''
 pipeline {
     agent {
         kubernetes {
