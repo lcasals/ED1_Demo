@@ -19,7 +19,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building.."
-                script{
+                script {
                     echo "doing build stuff.."
                     textFiles=$(find ./documents -iname *.txt)
                  }
@@ -28,7 +28,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo "Testing.."
-                script{ 
+                script { 
                     echo "doing testing stuff"
                     for i in $textFiles; do echo $i; cat $i; done
                 }
