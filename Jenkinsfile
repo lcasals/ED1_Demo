@@ -69,17 +69,28 @@ pipeline {
             steps {
                 echo 'Uploading....'
                 echo 'textFiles = [$textFiles]'
-               rtUpload(
+                script{
+                    def texts = textFiles.split(' ')
+                    for (txt in texts) {
+                        sh "echo ${txt}"
+                        sh "cat ${txt}"   
+                        rtserver(
+                            id: 'artifactory'
+                            url: 'https://artifactory.danr.dev'
+                            )
+                        rtUpload(
                             serverId: 'artifactory',
                             spec:"""{
                                 "files": [
                                     {
-                                    "pattern": "$textFiles",
+                                    "pattern": "groovy1.txt",
                                     "target": "artifactory-practice/"
                                     }
                                 ]
                         }"""
-                  )           
+                        )
+                    }
+                }
             }
         }
     }
