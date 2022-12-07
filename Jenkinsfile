@@ -64,14 +64,14 @@ pipeline {
                         sh "Uploading ${txt}"
                         rtUpload(
                             serverId: 'artifactory',
-                            spec:'''{
+                            spec:"""{
                                 "files": [
                                     {
-                                    "pattern": "./documents/${txt}",
+                                    "pattern": "${txt}",
                                     "target": "artifactory-practice/"
                                     }
                                 ]
-                        }'''
+                        }"""
                         )  
                     }
                 }                
