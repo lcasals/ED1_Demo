@@ -83,7 +83,7 @@ pipeline {
                             spec:"""{
                                 "files": [
                                     {
-                                    "pattern": "groovy1.txt",
+                                    "pattern": "${txt}",
                                     "target": "artifactory-practice/"
                                     }
                                 ]
