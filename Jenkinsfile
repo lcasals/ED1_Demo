@@ -30,10 +30,8 @@ pipeline {
         stage('Test') {
             steps {
                 echo "Testing.."
-                echo "$textFiles"
-                sh """
-                for i in $textFiles; do echo $i; cat $i; done
-                """
+                echo "Test Step - Value of textFiles = $textFiles"
+                sh "for i in $textFiles; do echo $i; cat $i; done"
             }
         }
         stage('Deliver') {
