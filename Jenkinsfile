@@ -25,6 +25,7 @@ pipeline {
                 script {
                     echo "doing build stuff.."
                     textFiles="$myTextFiles"
+                    echo "$textFiles"
                  }
             }
         }
