@@ -19,13 +19,12 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building.."
-                sh '''
-                myTextFiles=$(find ./documents -iname *.txt)
-                '''
+
                 script {
                     echo "doing build stuff.."
-                    textFiles="$myTextFiles"
-                    echo "$textFiles"
+                    sh '''
+                    textFiles=$(find ./documents -iname *.txt)
+                    '''
                  }
             }
         }
