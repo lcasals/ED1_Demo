@@ -47,6 +47,15 @@ pipeline {
                 }
             }
         }
+        stage('Creating txt file') {
+            steps {
+                echo 'Writing...'
+                writeFile file: 'groovy1.txt', text: 'Working with files the Groovy way is easy.'
+                sh 'ls -l groovy1.txt'
+                sh 'cat groovy1.txt'
+                sh 'ls -l documents'                
+            }
+        }   
         stage('Deliver') {
             steps {
                 echo 'Deliver....'
@@ -62,13 +71,12 @@ pipeline {
                     def texts = textFiles.split(' ')
                     for (txt in texts) {
                         sh "Uploading ${txt}"
-                        cd documents
                         rtUpload(
                             serverId: 'artifactory',
                             spec:"""{
                                 "files": [
                                     {
-                                    "pattern": "HelloWorld.txt",
+                                    "pattern": "${txt}",
                                     "target": "artifactory-practice/"
                                     }
                                 ]
