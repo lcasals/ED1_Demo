@@ -75,7 +75,7 @@ pipeline {
                         def uploadSpec = """{
                             "files" : [
                             {
-                                "pattern": "${txt}"
+                                "pattern": "./documents/HelloWorld.txt"
                                 "target": "artifactory-practice/"
                                }
                             ]
