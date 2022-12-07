@@ -68,21 +68,17 @@ pipeline {
          stage('Upload to Artifactory') {
             steps {
                 echo 'Uploading....'
-                script {
-                    def texts = textFiles.split(' ')
-                    for (txt in texts) {
-                        sh "Uploading ${txt}"
-                        def uploadSpec = """{
-                            "files" : [
-                            {
-                                "pattern": "./documents/HelloWorld.txt"
-                                "target": "artifactory-practice/"
-                               }
-                            ]
+               rtUpload(
+                            serverId: 'artifactory',
+                            spec:"""{
+                                "files": [
+                                    {
+                                    "pattern": "${env.txt}",
+                                    "target": "artifactory-practice/"
+                                    }
+                                ]
                         }"""
-                        server.upload spec: uploadSpec
-                    }                           
-                }
+                  )           
             }
         }
     }
