@@ -1,7 +1,5 @@
 def textFiles = " "
 def server = Artifactory.server 'artifactory'
-import jenkins.model.*
-jenkins = Jenkins.instance
 
 pipeline {
     agent {
@@ -73,7 +71,7 @@ pipeline {
                             }
                         ]
                     }"""
-                    server.upload spec: uploadSpec, buildInfo: buildInfo
+                    server.upload spec: uploadSpec
                 }
              }
          }
