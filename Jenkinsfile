@@ -65,8 +65,9 @@ pipeline {
                             spec:"""{
                                 "files": [
                                     {
-                                    "pattern": "./documents/HelloWorld.txt",
+                                    "pattern": "./documents/.*H[A-z]lloWord.*.txt",
                                     "target": "artifactory-practice/"
+                                    "regexp": "true"
                                     }
                                 ]
                         }"""
