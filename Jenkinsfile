@@ -67,10 +67,6 @@ pipeline {
                                     {
                                     "pattern": "./documents/HelloWorld.txt",
                                     "target": "artifactory-practice/"
-                                    },
-                                    {
-                                    "pattern": "./documents/Hello.txt",
-                                    "target": "artifactory-practice/"
                                     }
                                 ]
                         }"""
