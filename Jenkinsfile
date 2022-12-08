@@ -60,18 +60,18 @@ pipeline {
             steps {
                 echo 'Uploading....'
                 echo 'textFiles = [$textFiles]' 
-                        rtUpload(
-                            serverId: 'artifactory',
-                            spec:"""{
-                                "files": [
-                                    {
-                                    "pattern": "./documents/*.txt",
-                                    "target": "artifactory-practice/",
-                                    "regexp": "true"
-                                    }
-                                ]
-                        }"""
-                        )
+                Script{
+                    def uploadSpec = """{
+                        "files":[
+                            {
+                                "pattern": "./documents/*.txt",
+                                "target": "artifactory-practice/",
+                                "regexp": "true"
+                            }
+                        ]
+                    }"""
+                    server.upload spec: uploadSpec, buildInfo: buildInfo
+                }
                 }
            }
     }
