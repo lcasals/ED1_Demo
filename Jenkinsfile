@@ -60,7 +60,7 @@ pipeline {
             steps {
                 echo 'Uploading....'
                 echo 'textFiles = [$textFiles]' 
-                Script{
+                script{
                     def uploadSpec = """{
                         "files":[
                             {
@@ -72,7 +72,7 @@ pipeline {
                     }"""
                     server.upload spec: uploadSpec, buildInfo: buildInfo
                 }
-                }
-           }
+             }
+         }
     }
 }
