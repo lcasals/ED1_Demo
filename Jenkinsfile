@@ -66,7 +66,7 @@ pipeline {
                                 "files": [
                                     {
                                     "pattern": "./documents/*.txt",
-                                    "target": "artifactory-practice/"
+                                    "target": "artifactory-practice/",
                                     "regexp": "true"
                                     }
                                 ]
