@@ -48,15 +48,6 @@ pipeline {
                 }
             }
         }
-        stage('Creating txt file') {
-            steps {
-                echo 'Writing...'
-                writeFile file: 'groovy1.txt', text: 'Working with files the Groovy way is easy.'
-                sh 'ls -l groovy1.txt'
-                sh 'cat groovy1.txt'
-                sh 'ls -l documents'                
-            }
-        }   
         stage('Deliver') {
             steps {
                 echo 'Deliver....'
