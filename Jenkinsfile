@@ -1,5 +1,8 @@
 def textFiles = " "
 def server = Artifactory.server 'artifactory'
+import jenkins.model.*
+jenkins = Jenkins.instance
+
 pipeline {
     agent {
         kubernetes {
