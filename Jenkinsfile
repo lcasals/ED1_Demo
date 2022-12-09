@@ -64,7 +64,7 @@ pipeline {
                         //echo "One round done!"
                         //echo "${uploadSpec}"
                     }
-                    uploadSpec = uploadSpec[0..-1]
+                    uploadSpec = uploadSpec[0..-2]
                     uploadSpec = uploadSpec + uploadSpecEND
                     echo "${uploadSpec}"
                 }
