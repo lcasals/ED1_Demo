@@ -83,14 +83,7 @@ pipeline {
                 echo 'Uploading....'
                         rtUpload(
                             serverId: 'artifactory',
-                            spec:"""{
-                                "files": [
-                                    {
-                                    "pattern": "./documents/HelloWorld.txt",
-                                    "target": "artifactory-practice/"
-                                    }
-                                ]
-                        }"""
+                            spec:"""${uploadSpec}"""
                         )
             }
         }
