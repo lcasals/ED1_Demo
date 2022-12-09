@@ -54,28 +54,16 @@ pipeline {
                 
                 uploadSpec = uploadSpecSTART
                 sh "echo ${uploadSpec}"
-                sh "echo HIMOM"
                     def texts = textFiles.split('\n')
                     for (txt in texts) {
                         sh "echo ${txt}"
-                        //sh "cat ${txt}"
-                        
+                        sh "cat ${txt}"
                         uploadSpec = uploadSpec + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ','
-                        //echo "One round done!"
-                        //echo "${uploadSpec}"
                     }
                     uploadSpec = uploadSpec[0..-2]
                     uploadSpec = uploadSpec + uploadSpecEND
                     echo "${uploadSpec}"
                 }
-            }
-        }
-        stage('Deliver') {
-            steps {
-                echo 'Deliver....'
-                sh '''
-                echo "doing delivery stuff.."
-                '''
             }
         }
          stage('Upload to Artifactory') {
