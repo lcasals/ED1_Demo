@@ -52,13 +52,13 @@ pipeline {
                 def uploadSpecEND = ']}'
                 
                 uploadSpec = uploadSpecSTART
-                                          
+                sh "echo ${uploadSpec}"        
                     def texts = textFiles.split(' ')
                     for (txt in texts) {
                         sh "echo ${txt}"
                         sh "cat ${txt}"
                         
-                        uploadSpec = uploadSpec + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ","
+                        uploadSpec = uploadSpec + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ','
                     }
                     uploadSpec = uploadSpec + uploadSpecEND
                     sh "echo ${uploadSpec}"
