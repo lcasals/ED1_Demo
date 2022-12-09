@@ -75,7 +75,7 @@ pipeline {
                         uploadSpec = uploadSpec + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ","
                     }
                     uploadSpec = uploadSpec + uploadSpecEND
-                    sh "echo ${uploadSpec}"
+                    sh "echo ----<<<  ${uploadSpec}     ---->>>>"
                 }
             }
         }
