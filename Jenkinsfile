@@ -52,7 +52,8 @@ pipeline {
                 def uploadSpecEND = ']}'
                 
                 uploadSpec = uploadSpecSTART
-                sh "echo ${uploadSpec}"        
+                sh "echo ${uploadSpec}"
+                sh "echo HIMOM"
                     def texts = textFiles.split(' ')
                     for (txt in texts) {
                         sh "echo ${txt}"
