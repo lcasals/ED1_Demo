@@ -45,11 +45,11 @@ pipeline {
                 script {
                     
                     
-                def uploadSpecSTART = "{\\"files\\": ["
-                def uploadSpecPatStart = "{\\"pattern\\": \\""   
-                def uploadSpecPatEnd = "\\","                          
-                def uploadSpecTarget = "\\"target\\": \\"artifactory-practice/\\"}" 
-                def uploadSpecEND = "]}"
+                def uploadSpecSTART = '{\\"files\\": ['
+                def uploadSpecPatStart = '{\\"pattern\\": \\"'   
+                def uploadSpecPatEnd = '\\",'                          
+                def uploadSpecTarget = '\\"target\\": \\"artifactory-practice/\\"}'
+                def uploadSpecEND = ']}'
                 
                 uploadSpec = uploadSpecSTART
                                           
