@@ -64,7 +64,7 @@ pipeline {
                         echo "${uploadSpec}"
                     }
                     uploadSpec = uploadSpec + uploadSpecEND
-                    sh "echo ${uploadSpec}"
+                    echo "${uploadSpec}"
                 }
             }
         }
