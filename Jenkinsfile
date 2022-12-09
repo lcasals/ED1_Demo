@@ -1,4 +1,5 @@
 def textFiles = " "
+def uploadSpec = " "
 def server = Artifactory.server 'artifactory'
 
 pipeline {
@@ -40,12 +41,41 @@ pipeline {
             steps {
                 echo "Testing.."
                 echo "Test Step - Value of textFiles = $textFiles"
+               
                 script {
+                    
+                    
+                def uploadSpecSTART = """{
+    "files": ["""
+       
+                
+                def uploadSpecPatStart = """
+        {
+            "pattern": "
+"""   
+                def uploadSpecPatEnd = """",
+"""                          
+                
+                def uploadSpecTarget = """
+            "target": "artifactory-practice/"
+        }""" 
+                       
+                
+                def uploadSpecEND = """
+    ]
+}"""
+                
+                uploadSpec = uploadSpecSTART
+                                          
                     def texts = textFiles.split(' ')
                     for (txt in texts) {
                         sh "echo ${txt}"
-                        sh "cat ${txt}"    
+                        sh "cat ${txt}"
+                        
+                        uploadSpec = uploadSpec + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ","
                     }
+                    uploadSpec = uploadSpec + uploadSpecEND
+                    sh "echo ${uploadSpec}"
                 }
             }
         }
