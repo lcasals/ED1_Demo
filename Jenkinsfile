@@ -58,13 +58,13 @@ pipeline {
                     def texts = textFiles.split('\n')
                     for (txt in texts) {
                         sh "echo ${txt}"
-                        echo "time to cat stuff"
-                        sh "cat ${txt}"
+                        //sh "cat ${txt}"
                         
                         uploadSpec = uploadSpec + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ','
-                        echo "One round done!"
-                        echo "${uploadSpec}"
+                        //echo "One round done!"
+                        //echo "${uploadSpec}"
                     }
+                    uploadSpec = uploadSpec[0..uploadSpec-1]
                     uploadSpec = uploadSpec + uploadSpecEND
                     echo "${uploadSpec}"
                 }
