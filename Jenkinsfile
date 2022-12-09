@@ -33,6 +33,7 @@ pipeline {
                 script {
                     echo "doing build stuff.."
                     textFiles= sh(returnStdout: true, script: 'find ./documents -iname *.txt')
+                    sh "ls -l ./documents"
                     echo "$textFiles"
                  }
             }
