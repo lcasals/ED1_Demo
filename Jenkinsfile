@@ -55,7 +55,7 @@ pipeline {
                 uploadSpec = uploadSpecSTART
                 sh "echo ${uploadSpec}"
                 sh "echo HIMOM"
-                    def texts = textFiles.split(' ')
+                    def texts = textFiles.split('\n')
                     for (txt in texts) {
                         sh "echo ${txt}"
                         echo "time to cat stuff"
