@@ -48,7 +48,7 @@ pipeline {
                 def uploadSpecSTART = '{\\"files\\": ['
                 def uploadSpecPatStart = '{\\"pattern\\": \\"'   
                 def uploadSpecPatEnd = '\\",'                          
-                def uploadSpecTarget = '\\"target\\": \\"artifactory-practice/\\"}'
+                def uploadSpecTarget = '\\"targs\\": \\"artifactory-practice/\\"}'
                 def uploadSpecEND = ']}'
                 
                 uploadSpec = uploadSpecSTART
@@ -61,7 +61,7 @@ pipeline {
                         uploadSpec = uploadSpec + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ","
                     }
                     uploadSpec = uploadSpec + uploadSpecEND
-                    //sh "echo ${uploadSpec}"
+                    sh "echo ${uploadSpec}"
                 }
             }
         }
@@ -76,7 +76,6 @@ pipeline {
          stage('Upload to Artifactory') {
             steps {
                 echo 'Uploading....'
-                echo 'textFiles = [$textFiles]' 
                         rtUpload(
                             serverId: 'artifactory',
                             spec:"""{
