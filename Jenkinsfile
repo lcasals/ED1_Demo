@@ -45,10 +45,10 @@ pipeline {
                 script {
                     
                     
-                def uploadSpecSTART = '{\\"files\\": ['
-                def uploadSpecPatStart = '{\\"pattern\\": \\"'   
-                def uploadSpecPatEnd = '\\",'                          
-                def uploadSpecTarget = '\\"targs\\": \\"artifactory-practice/\\"}'
+                def uploadSpecSTART = '{"files": ['
+                def uploadSpecPatStart = '{"pattern": "'   
+                def uploadSpecPatEnd = '",'                          
+                def uploadSpecTarget = '"target": "artifactory-practice/"}'
                 def uploadSpecEND = ']}'
                 
                 uploadSpec = uploadSpecSTART
@@ -60,6 +60,8 @@ pipeline {
                         sh "cat ${txt}"
                         
                         uploadSpec = uploadSpec + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ','
+                        echo "One round done!"
+                        echo "${uploadSpec}"
                     }
                     uploadSpec = uploadSpec + uploadSpecEND
                     sh "echo ${uploadSpec}"
