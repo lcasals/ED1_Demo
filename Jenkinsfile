@@ -75,10 +75,10 @@ pipeline {
                         )
             }
         }
-        post {
+    }
+       post {
         always {
             emailext body: 'A Test EMail', recipientProviders: [[$class: 'faugroup22@gmail.com'], [$class: 'faugroup22@gmail.com']], subject: 'Test'
         }
-    }
     }
 }
