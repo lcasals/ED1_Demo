@@ -75,6 +75,14 @@ pipeline {
                         )
             }
         }
+        stage('Email')
+        {
+            steps{
+                emailext body: 'Test Message',
+                subject: 'Test Subject',
+                to: 'faugroup22@gmail.com'
+            }
+        }
     }
        post {
         always {
