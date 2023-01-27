@@ -1,1 +1,2 @@
-Checking that the document "Testing1.txt" is succesully going through the pipeline and deploying to artifactory
+Checking that the document "Testing1.txt" is succesully going through the pipeline and deploying to artifactory.
+Checking if email is working now.
