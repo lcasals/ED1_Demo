@@ -78,8 +78,8 @@ pipeline {
         stage('Email')
         {
             steps{
-                emailext body: 'Test Message',
-                subject: 'Test Subject',
+                emailext body: "Test Message ${env.BUILD_NUMBER}",
+                subject: 'Testing that I am able to send an email notification once the build completes',
                 to: 'faugroup22@gmail.com'
             }
         }
