@@ -79,7 +79,6 @@ pipeline {
         {
             steps{
                 emailext body: 'Testing that I am able to send an email notification once the build completes!',
-                from: "jenkins@danr.dev",
                 subject: "Test Message ${env.BUILD_NUMBER}",
                 to: 'faugroup22@gmail.com'
             }
