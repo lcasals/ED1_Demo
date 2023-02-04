@@ -32,7 +32,7 @@ pipeline {
 
                 script {
                     echo "doing build stuff.."
-                    textFiles= sh(returnStdout: true, script: 'find ./documents -iname *.txt')
+                    textFiles= sh(returnStdout: true, script: 'find ./documents -iname *.pdf')
                     sh "ls -l ./documents"
                     echo "$textFiles"
                  }
