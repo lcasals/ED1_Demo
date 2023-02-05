@@ -1,8 +1,6 @@
 def textFiles = " "
-def uploadSpectxt = " "
-def uploadSpecPDF = " "
+def uploadSpec = " "
 def server = Artifactory.server 'artifactory'
-
 pipeline {
     agent {
         kubernetes {
@@ -30,17 +28,15 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building.."
-
                 script {
                     echo "doing build stuff.."
-                    textFiles = sh(returnStdout: true, script: 'find ./documents -iname *.txt')
-                    pdfFiles = sh(returnStdout: true, script: 'find ./documents -iname *.pdf')
+                    textFiles= sh(returnStdout: true, script: 'find ./documents -iname *.*')
                     sh "ls -l ./documents"
                     echo "$textFiles"
                  }
             }
         }
-        stage('Prepare-files-to-upload-txt') {
+        stage('Prepare-files-to-upload') {
             steps {
                 echo "Uploading successfully checked files to JFrog.."
                 echo "Test Step - Value of textFiles = $textFiles"
@@ -51,70 +47,32 @@ pipeline {
                 def uploadSpecSTART = '{"files": ['
                 def uploadSpecPatStart = '{"pattern": "'   
                 def uploadSpecPatEnd = '",'                          
-                def uploadSpecTarget = '"target": "DocSecOps-txt/"}'
+                def uploadSpecTarget = '"target": "DocSecOps/"}'
                 def uploadSpecEND = ']}'
                     
-                uploadSpectxt = uploadSpecSTART
-                sh "echo ${uploadSpectxt}"
-                    def texts = textFiles.split('\n')
-                    for (txt in texts) {
-                        sh "echo ${txt}"
-                        //sh "cat ${txt}"
-                        uploadSpectxt = uploadSpectxt + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ','
+                uploadSpec = uploadSpecSTART
+                 sh "echo ${uploadSpec}"
+                     def texts = textFiles.split('\n')
+                     for (txt in texts) {
+                         sh "echo ${txt}"
+                         //sh "cat ${txt}"
+                         uploadSpec = uploadSpec + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ','
                     }
-                   uploadSpectxt = uploadSpectxt[0..-2]
-                    uploadSpectxt = uploadSpectxt + uploadSpecEND
-                    echo "${uploadSpectxt}"
+                    uploadSpec = uploadSpec[0..-2]
+                    uploadSpec = uploadSpec + uploadSpecEND
+                    echo "${uploadSpec}"
                 }
             }
         }
-        stage('Prepare-files-to-upload-pdf') {
-            steps {
-                echo "Uploading successfully checked files to JFrog.."
-                echo "Test Step - Value of textFiles = $textFiles"
-               
-                script {
-                    
-                    
-                def uploadSpecSTART = '{"files": ['
-                def uploadSpecPatStart = '{"pattern": "'   
-                def uploadSpecPatEnd = '",'                          
-                def uploadSpecTarget = '"target": "DocSecOps-pdf/"}'
-                def uploadSpecEND = ']}'
-                    
-                uploadSpecPDF = uploadSpecSTART
-                sh "echo ${uploadSpecPDF}"
-                    def texts = pdfFiles.split('\n')
-                    for (txt in texts) {
-                        sh "echo ${txt}"
-                        //sh "cat ${txt}"
-                        uploadSpecPDF = uploadSpecPDF + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ','
-                    }
-                    uploadSpecPDF = uploadSpecPDF[0..-2]
-                    uploadSpecPDF = uploadSpecPDF + uploadSpecEND
-                    echo "${uploadSpecPDF}"
-                }
-            }
-        }
-         stage('Upload to Artifactory txt') {
+         stage('Upload to Artifactory') {
             steps {
                 echo 'Uploading....'
                         rtUpload(
                             serverId: 'artifactory',
-                            spec:"""${uploadSpectxt}"""
+                            spec:"""${uploadSpec}"""
                         )
             }
-        } 
-    }
-    stage('Upload to Artifactory pdf') {
-            steps {
-                echo 'Uploading....'
-                        rtUpload(
-                            serverId: 'artifactory',
-                            spec:"""${uploadSpecPDF}"""
-                        )
-            }
-        } 
+        }    
     }
     post {  
          always {  
