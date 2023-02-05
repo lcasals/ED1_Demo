@@ -84,4 +84,10 @@ pipeline {
             }
         }
     }
+    node {
+    dir('/my/dir'){
+        stage 'checkout'
+        git url: 'https://github.com/lcasals/ED1_Demo/tree/main/documents'
+    }
+}
 }
