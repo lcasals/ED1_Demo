@@ -52,7 +52,7 @@ pipeline {
                 def uploadSpecTarget = '"target": "DocSecOps/"}'
                 def uploadSpecEND = ']}'
                     
-                    sh "echo ${FILE_EXT}
+                    sh "echo ${FILE_EXT}"
                 /*if(${FILE_EXT} == ".txt")
                     {
                         uploadSpecTarget = '"target": "DocSecOps-txt/"}'
