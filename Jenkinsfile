@@ -51,7 +51,7 @@ pipeline {
                 def uploadSpecPatEnd = '",'                          
                 //def uploadSpecTarget = '"target": "DocSecOps/"}'
                 def uploadSpecEND = ']}'
-                if(-iname == *.txt)
+                if(${FILE_EXT} == .txt)
                     {
                         uploadSpecTarget = '"target": "DocSecOps-txt/"}'
                     }
