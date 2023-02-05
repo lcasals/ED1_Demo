@@ -82,16 +82,7 @@ pipeline {
                 subject: "Test Message ${env.BUILD_NUMBER}",
                 to: 'faugroup22@gmail.com'
             }
-        }
-        stage('Delete Files')
-        {
-            steps{
-                 dir('/my/dir'){
-                     git url: 'https://github.com/lcasals/ED1_Demo/tree/main/documents'
-                 }
-            }
-          
-        }
-    
+        }    
+      }
     }
 }
