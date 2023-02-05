@@ -99,7 +99,7 @@ pipeline {
          failure {  
              emailext attachLog: true,
                 subject: "Jenkins Build ${env.JOB_NAME}, ${env.BUILD_NUMBER}",
-                "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> Build URL: ${env.BUILD_URL}",
+                body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> Build URL: ${env.BUILD_URL}",
                 to: 'faugroup22@gmail.com'  
          }  
          unstable {  
