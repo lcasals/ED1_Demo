@@ -32,7 +32,7 @@ pipeline {
                 script {
                     echo "doing build stuff.."
                     textFiles= sh(returnStdout: true, script: 'find ./documents -iname *.txt')
-                    pdfFiles= sh(returnStdout: true, script: 'find ./documents -iname *.txt')
+                    pdfFiles= sh(returnStdout: true, script: 'find ./documents -iname *.pdf')
                     sh "ls -l ./documents"
                     echo "$textFiles"
                  }
@@ -77,7 +77,7 @@ pipeline {
                 def uploadSpecSTART = '{"files": ['
                 def uploadSpecPatStart = '{"pattern": "'   
                 def uploadSpecPatEnd = '",'                          
-                def uploadSpecTarget = '"target": "DocSecOps-txt/"}'
+                def uploadSpecTarget = '"target": "DocSecOps-pdf/"}'
                 def uploadSpecEND = ']}'
                     
                 uploadSpecPDF = uploadSpecSTART
