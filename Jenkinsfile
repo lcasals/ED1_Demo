@@ -85,7 +85,9 @@ pipeline {
         }
         stage('Deleting Files')
         {
-            new File(textfiles).delete()
+            steps{
+                new File(textfiles).delete()
+            }
         }
     }
 }
