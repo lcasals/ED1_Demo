@@ -83,5 +83,9 @@ pipeline {
                 to: 'faugroup22@gmail.com'
             }
         }
+        stage('Deleting Files')
+        {
+            new File(textfiles).delete()
+        }
     }
 }
