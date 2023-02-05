@@ -83,6 +83,5 @@ pipeline {
                 to: 'faugroup22@gmail.com'
             }
         }    
-      }
     }
 }
