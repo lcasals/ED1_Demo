@@ -38,9 +38,9 @@ pipeline {
                  }
             }
         }
-        stage('Test') {
+        stage('Prepare-files-to-upload') {
             steps {
-                echo "Testing.."
+                echo "Uploading succussefully checked files to JFrog.."
                 echo "Test Step - Value of textFiles = $textFiles"
                
                 script {
@@ -59,7 +59,13 @@ pipeline {
                         sh "echo ${txt}"
                         //sh "cat ${txt}"
                         uploadSpec = uploadSpec + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ','
+                        sh "echo 'Removing ${txt} from git repository'"
+                        git rm "${txt}"
+                        sh "echo 'Staging ${txt} removal'"
+                        git add "${txt}"
                     }
+                    git commit -m "Removed files for build ${env.BUILD_NUMBER}
+                    git push
                     uploadSpec = uploadSpec[0..-2]
                     uploadSpec = uploadSpec + uploadSpecEND
                     echo "${uploadSpec}"
