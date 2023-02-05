@@ -61,8 +61,6 @@ pipeline {
                         uploadSpec = uploadSpec + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ','
                         sh "echo 'Removing ${txt} from git repository'"
                         sh "git rm '${txt}'"
-                        sh "echo 'Staging ${txt} removal'"
-                        sh "git add '${txt}'"
                     }
                     git commit -m "Removed files for build ${env.BUILD_NUMBER}"
                     git push
