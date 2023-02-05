@@ -52,7 +52,7 @@ pipeline {
                 //def uploadSpecTarget = '"target": "DocSecOps/"}'
                 def uploadSpecEND = ']}'
                     
-                if(textFiles == *.txt)
+                if($textFiles == *.txt)
                    {
                        def uploadSpecTarget = '"target": "DocSecOps/"}'
                    }
