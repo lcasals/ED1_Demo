@@ -49,16 +49,18 @@ pipeline {
                 def uploadSpecSTART = '{"files": ['
                 def uploadSpecPatStart = '{"pattern": "'   
                 def uploadSpecPatEnd = '",'                          
-                //def uploadSpecTarget = '"target": "DocSecOps/"}'
+                def uploadSpecTarget = '"target": "DocSecOps/"}'
                 def uploadSpecEND = ']}'
-                if(${FILE_EXT} == ".txt")
+                    
+                    sh "echo ${FILE_EXT}
+                /*if(${FILE_EXT} == ".txt")
                     {
                         uploadSpecTarget = '"target": "DocSecOps-txt/"}'
                     }
                 else
                     {
                         uploadSpecTarget = '"target": "DocSecOps-pdf/"}'
-                    }
+                    }*/
                 
                 uploadSpec = uploadSpecSTART
                 sh "echo ${uploadSpec}"
