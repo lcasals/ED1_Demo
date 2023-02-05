@@ -40,7 +40,7 @@ pipeline {
         }
         stage('Prepare-files-to-upload') {
             steps {
-                echo "Uploading succussefully checked files to JFrog.."
+                echo "Uploading successfully checked files to JFrog.."
                 echo "Test Step - Value of textFiles = $textFiles"
                
                 script {
@@ -52,19 +52,20 @@ pipeline {
                 def uploadSpecTarget = '"target": "DocSecOps/"}'
                 def uploadSpecEND = ']}'
                     
-                if($textFiles == '"./documents/*.txt"')
+                /*if($textFiles == '"./documents/*.txt"')
                    {
                        echo "Inside IF statement"
                    }
                 else
                    {
                        echo "Inside ELSE statement"
-                   }
+                   }*/
                     
                 uploadSpec = uploadSpecSTART
                 sh "echo ${uploadSpec}"
                     def texts = textFiles.split('\n')
                     for (txt in texts) {
+                        sh "echo${texts}
                         sh "echo ${txt}"
                         //sh "cat ${txt}"
                         uploadSpec = uploadSpec + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ','
