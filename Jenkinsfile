@@ -81,7 +81,7 @@ pipeline {
                 emailext attachLog: true,
                 body: 'Testing that I am able to send an email notification once the build completes!',
                 subject: "Jenkins Build ${env.BUILD_NUMBER}",
-                to: 'faugroup22@gmail.com'
+                to: 'faugroup22@gmail.com'.
             }
         }    
     }
@@ -90,10 +90,17 @@ pipeline {
              echo 'This will always run'  
          }  
          success {  
-             echo 'This will run only if successful'  
+             echo 'This will run only if successful'
+             emailext attachLog: true,
+                body: 'Testing that I am able to send an email notification once the build completes!',
+                subject: "Jenkins Build ${env.BUILD_NUMBER}",
+                to: 'faugroup22@gmail.com'
          }  
          failure {  
-             mail bcc: '', body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "foo@foomail.com";  
+             emailext attachLog: true,
+                subject: "Jenkins Build ${env.JOB_NAME}, ${env.BUILD_NUMBER}",
+                "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> Build URL: ${env.BUILD_URL}",
+                to: 'faugroup22@gmail.com'  
          }  
          unstable {  
              echo 'This will run only if the run was marked as unstable'  
