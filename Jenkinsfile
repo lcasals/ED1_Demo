@@ -52,21 +52,13 @@ pipeline {
                 def uploadSpecTarget = '"target": "DocSecOps/"}'
                 def uploadSpecEND = ']}'
                     
-                /*if($textFiles == '"./documents/*.txt"')
-                   {
-                       echo "Inside IF statement"
-                   }
-                else
-                   {
-                       echo "Inside ELSE statement"
-                   }*/
-                    
                 uploadSpec = uploadSpecSTART
                 sh "echo ${uploadSpec}"
                     def texts = textFiles.split('\n')
                     for (txt in texts) {
+                        sh "echo testing before txt is completed"
                         sh "echo ${txt}"
-                        if("${txt}" == "./documents/*.txt")
+                        if("${txt}" == "*.txt")
                         {
                             sh "echo Inside IF statement"
                         }
