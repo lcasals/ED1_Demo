@@ -32,13 +32,42 @@ pipeline {
 
                 script {
                     echo "doing build stuff.."
-                    textFiles= sh(returnStdout: true, script: 'find ./documents -iname *.*')
+                    textFiles = sh(returnStdout: true, script: 'find ./documents -iname *.txt')
+                    pdfFiles = sh(returnStdout: true, script: 'find ./documents -iname *.pdf')
                     sh "ls -l ./documents"
                     echo "$textFiles"
                  }
             }
         }
-        stage('Prepare-files-to-upload') {
+        stage('Prepare-files-to-upload-txt') {
+            steps {
+                echo "Uploading successfully checked files to JFrog.."
+                echo "Test Step - Value of textFiles = $textFiles"
+               
+                script {
+                    
+                    
+                def uploadSpecSTART = '{"files": ['
+                def uploadSpecPatStart = '{"pattern": "'   
+                def uploadSpecPatEnd = '",'                          
+                def uploadSpecTarget = '"target": "DocSecOps-txt/"}'
+                def uploadSpecEND = ']}'
+                    
+                uploadSpec = uploadSpecSTART
+                sh "echo ${uploadSpec}"
+                    def texts = textFiles.split('\n')
+                    for (txt in texts) {
+                        sh "echo ${txt}"
+                        //sh "cat ${txt}"
+                        uploadSpec = uploadSpec + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ','
+                    }
+                    uploadSpec = uploadSpec[0..-2]
+                    uploadSpec = uploadSpec + uploadSpecEND
+                    echo "${uploadSpec}"
+                }
+            }
+        }
+        stage('Prepare-files-to-upload-pdf') {
             steps {
                 echo "Uploading successfully checked files to JFrog.."
                 echo "Test Step - Value of textFiles = $textFiles"
@@ -54,18 +83,9 @@ pipeline {
                     
                 uploadSpec = uploadSpecSTART
                 sh "echo ${uploadSpec}"
-                    def texts = textFiles.split('\n')
+                    def texts = pdfFiles.split('\n')
                     for (txt in texts) {
-                        sh "echo testing before txt is completed"
                         sh "echo ${txt}"
-                        if("${txt}" == "*.txt")
-                        {
-                            sh "echo Inside IF statement"
-                        }
-                        else
-                        {
-                            sh "echo Inside ELSE statement"
-                        }
                         //sh "cat ${txt}"
                         uploadSpec = uploadSpec + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ','
                     }
