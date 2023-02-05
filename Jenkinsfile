@@ -74,15 +74,6 @@ pipeline {
                             spec:"""${uploadSpec}"""
                         )
             }
-        }
-        stage('Email')
-        {
-            steps{
-                emailext attachLog: true,
-                body: 'Testing that I am able to send an email notification once the build completes!',
-                subject: "Jenkins Build ${env.BUILD_NUMBER}",
-                to: 'faugroup22@gmail.com'
-            }
         }    
     }
     post {  
