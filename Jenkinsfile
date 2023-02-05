@@ -83,15 +83,15 @@ pipeline {
          success {  
              echo 'The build is successful'
              emailext attachLog: true,
+                subject: "Jenkins Build: ${env.BUILD_NUMBER} Status: ${env.BUILD_STATUS}", 
                 body: "Project: ${env.JOB_NAME}\r\nBuild Number: ${env.BUILD_NUMBER} \r\nBuild URL: ${env.BUILD_URL}",
-                subject: "Jenkins Build ${env.BUILD_NUMBER}",
                 to: 'faugroup22@gmail.com'
          }  
          failure {  
              echo 'The build failed'
              emailext attachLog: true,
-                subject: "Jenkins Build ${env.JOB_NAME}, ${env.BUILD_NUMBER}",
-                body: "Example</b><br>Project: ${env.JOB_NAME} \r\nBuild Number: ${env.BUILD_NUMBER} \r\nBuild URL: ${env.BUILD_URL}",
+                subject: "Jenkins Build: ${env.BUILD_NUMBER} Status: ${env.BUILD_STATUS}",
+                body: "Project: ${env.JOB_NAME}\r\nBuild Number: ${env.BUILD_NUMBER} \r\nBuild URL: ${env.BUILD_URL}",
                 to: 'faugroup22@gmail.com'  
          }  
          unstable {  
