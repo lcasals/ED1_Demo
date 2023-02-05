@@ -64,7 +64,7 @@ pipeline {
                         sh "echo 'Staging ${txt} removal'"
                         git add "${txt}"
                     }
-                    git commit -m "Removed files for build ${env.BUILD_NUMBER}
+                    git commit -m "Removed files for build ${env.BUILD_NUMBER}"
                     git push
                     uploadSpec = uploadSpec[0..-2]
                     uploadSpec = uploadSpec + uploadSpecEND
