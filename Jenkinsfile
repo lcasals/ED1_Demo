@@ -52,16 +52,6 @@ pipeline {
                 def uploadSpecTarget = '"target": "DocSecOps/"}'
                 def uploadSpecEND = ']}'
                     
-                    sh "echo ${FILE_EXT}"
-                /*if(${FILE_EXT} == ".txt")
-                    {
-                        uploadSpecTarget = '"target": "DocSecOps-txt/"}'
-                    }
-                else
-                    {
-                        uploadSpecTarget = '"target": "DocSecOps-pdf/"}'
-                    }*/
-                
                 uploadSpec = uploadSpecSTART
                 sh "echo ${uploadSpec}"
                     def texts = textFiles.split('\n')
