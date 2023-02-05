@@ -83,11 +83,13 @@ pipeline {
                 to: 'faugroup22@gmail.com'
             }
         }
+        stage('Delete Files')
+        {
+            dir('/my/dir'){
+                stage 'checkout'
+                git url: 'https://github.com/lcasals/ED1_Demo/tree/main/documents'
+            }
+        }
+    
     }
-    node {
-    dir('/my/dir'){
-        stage 'checkout'
-        git url: 'https://github.com/lcasals/ED1_Demo/tree/main/documents'
-    }
-}
 }
