@@ -85,10 +85,12 @@ pipeline {
         }
         stage('Delete Files')
         {
-            dir('/my/dir'){
-                stage 'checkout'
-                git url: 'https://github.com/lcasals/ED1_Demo/tree/main/documents'
+            steps{
+                 dir('/my/dir'){
+                     git url: 'https://github.com/lcasals/ED1_Demo/tree/main/documents'
+                 }
             }
+          
         }
     
     }
