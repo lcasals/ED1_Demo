@@ -1,5 +1,6 @@
 def textFiles = " "
-def uploadSpec = " "
+def uploadSpectxt = " "
+def uploadSpecPDF = " "
 def server = Artifactory.server 'artifactory'
 
 pipeline {
@@ -53,17 +54,17 @@ pipeline {
                 def uploadSpecTarget = '"target": "DocSecOps-txt/"}'
                 def uploadSpecEND = ']}'
                     
-                uploadSpec = uploadSpecSTART
-                sh "echo ${uploadSpec}"
+                uploadSpectxt = uploadSpecSTART
+                sh "echo ${uploadSpectxt}"
                     def texts = textFiles.split('\n')
                     for (txt in texts) {
                         sh "echo ${txt}"
                         //sh "cat ${txt}"
-                        uploadSpec = uploadSpec + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ','
+                        uploadSpectxt = uploadSpectxt + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ','
                     }
-                    uploadSpec = uploadSpec[0..-2]
-                    uploadSpec = uploadSpec + uploadSpecEND
-                    echo "${uploadSpec}"
+                   uploadSpectxt = uploadSpectxt[0..-2]
+                    uploadSpectxt = uploadSpectxt + uploadSpecEND
+                    echo "${uploadSpectxt}"
                 }
             }
         }
@@ -78,29 +79,39 @@ pipeline {
                 def uploadSpecSTART = '{"files": ['
                 def uploadSpecPatStart = '{"pattern": "'   
                 def uploadSpecPatEnd = '",'                          
-                def uploadSpecTarget = '"target": "DocSecOps/"}'
+                def uploadSpecTarget = '"target": "DocSecOps-pdf/"}'
                 def uploadSpecEND = ']}'
                     
-                uploadSpec = uploadSpecSTART
-                sh "echo ${uploadSpec}"
+                uploadSpecPDF = uploadSpecSTART
+                sh "echo ${uploadSpecPDF}"
                     def texts = pdfFiles.split('\n')
                     for (txt in texts) {
                         sh "echo ${txt}"
                         //sh "cat ${txt}"
-                        uploadSpec = uploadSpec + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ','
+                        uploadSpecPDF = uploadSpecPDF + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ','
                     }
-                    uploadSpec = uploadSpec[0..-2]
-                    uploadSpec = uploadSpec + uploadSpecEND
-                    echo "${uploadSpec}"
+                    uploadSpecPDF = uploadSpecPDF[0..-2]
+                    uploadSpecPDF = uploadSpecPDF + uploadSpecEND
+                    echo "${uploadSpecPDF}"
                 }
             }
         }
-         stage('Upload to Artifactory') {
+         stage('Upload to Artifactory txt') {
             steps {
                 echo 'Uploading....'
                         rtUpload(
                             serverId: 'artifactory',
-                            spec:"""${uploadSpec}"""
+                            spec:"""${uploadSpectxt}"""
+                        )
+            }
+        }    
+    }
+    stage('Upload to Artifactory pdf') {
+            steps {
+                echo 'Uploading....'
+                        rtUpload(
+                            serverId: 'artifactory',
+                            spec:"""${uploadSpecPDF}"""
                         )
             }
         }    
