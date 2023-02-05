@@ -52,7 +52,7 @@ pipeline {
                 def uploadSpecTarget = '"target": "DocSecOps/"}'
                 def uploadSpecEND = ']}'
                     
-                if($textFiles == './documents/*.txt')
+                if($textFiles == '"./documents/*.txt"')
                    {
                        echo "Inside IF statement"
                    }
