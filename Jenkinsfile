@@ -42,6 +42,7 @@ pipeline {
             steps {
                 echo "Uploading succussefully checked files to JFrog.."
                 echo "Test Step - Value of textFiles = $textFiles"
+                echo "The types of files are ${FILE_EXT}"
                
                 script {
                     
