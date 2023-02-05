@@ -65,8 +65,15 @@ pipeline {
                 sh "echo ${uploadSpec}"
                     def texts = textFiles.split('\n')
                     for (txt in texts) {
-                        sh "echo${texts}"
                         sh "echo ${txt}"
+                        if(${txt} == '"./documents/*.txt"')
+                        {
+                            sh "echo Inside IF statement"
+                        }
+                        else
+                        {
+                            sh "echo Inside ELSE statement"
+                        }
                         //sh "cat ${txt}"
                         uploadSpec = uploadSpec + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ','
                     }
