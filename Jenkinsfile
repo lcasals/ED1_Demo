@@ -49,16 +49,16 @@ pipeline {
                 def uploadSpecSTART = '{"files": ['
                 def uploadSpecPatStart = '{"pattern": "'   
                 def uploadSpecPatEnd = '",'                          
-                //def uploadSpecTarget = '"target": "DocSecOps/"}'
+                def uploadSpecTarget = '"target": "DocSecOps/"}'
                 def uploadSpecEND = ']}'
                     
                 if($textFiles == './documents/*.txt')
                    {
-                       def uploadSpecTarget = '"target": "DocSecOps/"}'
+                       echo "Inside IF statement"
                    }
                 else
                    {
-                       def uploadSpecTarget = '"target": "DocSecOps/"}'
+                       echo "Inside ELSE statement"
                    }
                     
                 uploadSpec = uploadSpecSTART
