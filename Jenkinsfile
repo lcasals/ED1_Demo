@@ -42,7 +42,6 @@ pipeline {
             steps {
                 echo "Uploading succussefully checked files to JFrog.."
                 echo "Test Step - Value of textFiles = $textFiles"
-                echo "The types of files are ${FILE_EXT}"
                
                 script {
                     
@@ -50,8 +49,17 @@ pipeline {
                 def uploadSpecSTART = '{"files": ['
                 def uploadSpecPatStart = '{"pattern": "'   
                 def uploadSpecPatEnd = '",'                          
-                def uploadSpecTarget = '"target": "DocSecOps/"}'
+                //def uploadSpecTarget = '"target": "DocSecOps/"}'
                 def uploadSpecEND = ']}'
+                    
+                if(textFiles == ./documents/*.txt)
+                   {
+                       def uploadSpecTarget = '"target": "DocSecOps/"}'
+                   }
+                else
+                   {
+                       def uploadSpecTarget = '"target": "DocSecOps/"}'
+                   }
                     
                 uploadSpec = uploadSpecSTART
                 sh "echo ${uploadSpec}"
