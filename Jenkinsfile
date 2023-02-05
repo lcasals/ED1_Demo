@@ -83,7 +83,7 @@ pipeline {
          success {  
              echo 'This will run only if successful'
              emailext attachLog: true,
-                body: 'Testing that I am able to send an email notification once the build completes!',
+                body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> Build URL: ${env.BUILD_URL}",
                 subject: "Jenkins Build ${env.BUILD_NUMBER}",
                 to: 'faugroup22@gmail.com'
          }  
