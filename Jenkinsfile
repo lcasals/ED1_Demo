@@ -105,7 +105,6 @@ pipeline {
                         )
             }
         }    
-    }
     stage('Upload to Artifactory pdf') {
             steps {
                 echo 'Uploading....'
@@ -115,7 +114,6 @@ pipeline {
                         )
             }
         }    
-    }
     post {  
          always {  
              echo 'Post Build Functions'  
