@@ -78,16 +78,17 @@ pipeline {
     }
     post {  
          always {  
-             echo 'This will always run'  
+             echo 'Post Build Functions'  
          }  
          success {  
-             echo 'This will run only if successful'
+             echo 'The build is successful'
              emailext attachLog: true,
-                body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> Build URL: ${env.BUILD_URL}",
+                body: "Project: ${env.JOB_NAME} <br/> Build Number: ${env.BUILD_NUMBER} <br/> Build URL: ${env.BUILD_URL}",
                 subject: "Jenkins Build ${env.BUILD_NUMBER}",
                 to: 'faugroup22@gmail.com'
          }  
          failure {  
+             echo 'The build failed'
              emailext attachLog: true,
                 subject: "Jenkins Build ${env.JOB_NAME}, ${env.BUILD_NUMBER}",
                 body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> Build URL: ${env.BUILD_URL}",
