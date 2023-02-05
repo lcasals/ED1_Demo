@@ -94,7 +94,7 @@ pipeline {
                 }
             }
         }
-         stage('Upload to Artifactory') {
+         stage('Deploy txt to Artifactory') {
             steps {
                 echo 'Uploading....'
                         rtUpload(
@@ -103,7 +103,7 @@ pipeline {
                         )
             }
         }    
-        stage('Upload to Artifactory') {
+        stage('Deploy pdf to Artifactory') {
             steps {
                 echo 'Uploading....'
                         rtUpload(
