@@ -65,7 +65,7 @@ pipeline {
                 sh "echo ${uploadSpec}"
                     def texts = textFiles.split('\n')
                     for (txt in texts) {
-                        sh "echo${texts}
+                        sh "echo${texts}"
                         sh "echo ${txt}"
                         //sh "cat ${txt}"
                         uploadSpec = uploadSpec + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ','
