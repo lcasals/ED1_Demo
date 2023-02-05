@@ -104,7 +104,8 @@ pipeline {
                             spec:"""${uploadSpectxt}"""
                         )
             }
-        }    
+        } 
+    }
     stage('Upload to Artifactory pdf') {
             steps {
                 echo 'Uploading....'
@@ -113,7 +114,8 @@ pipeline {
                             spec:"""${uploadSpecPDF}"""
                         )
             }
-        }    
+        } 
+    }
     post {  
          always {  
              echo 'Post Build Functions'  
