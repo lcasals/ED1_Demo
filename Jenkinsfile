@@ -83,7 +83,7 @@ pipeline {
          success {  
              echo 'The build is successful'
              emailext attachLog: true,
-                body: "Project: ${env.JOB_NAME} <br> Build Number: ${env.BUILD_NUMBER} <br> Build URL: ${env.BUILD_URL}",
+                body: "Project: ${env.JOB_NAME} \r\n Build Number: ${env.BUILD_NUMBER} \r\n Build URL: ${env.BUILD_URL}",
                 subject: "Jenkins Build ${env.BUILD_NUMBER}",
                 to: 'faugroup22@gmail.com'
          }  
