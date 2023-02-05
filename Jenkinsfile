@@ -57,7 +57,7 @@ pipeline {
                     def texts = textFiles.split('\n')
                     for (txt in texts) {
                         sh "echo ${txt}"
-                        sh "cat ${txt}"
+                        //sh "cat ${txt}"
                         uploadSpec = uploadSpec + uploadSpecPatStart + "${txt}" + uploadSpecPatEnd + uploadSpecTarget + ','
                     }
                     uploadSpec = uploadSpec[0..-2]
