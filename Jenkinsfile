@@ -66,7 +66,7 @@ pipeline {
                     def texts = textFiles.split('\n')
                     for (txt in texts) {
                         sh "echo ${txt}"
-                        if(${txt} == '"./documents/*.txt"')
+                        if("${txt}" == "./documents/*.txt")
                         {
                             sh "echo Inside IF statement"
                         }
