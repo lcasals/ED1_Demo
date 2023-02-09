@@ -32,14 +32,14 @@ pipeline {
                     echo "doing build stuff.."
                     JSONFiles= sh(returnStdout: true, script: 'find ./documents -iname *.json')
                     sh "ls -l ./documents"
-                    echo "$textFiles"
+                    echo "$JSONFiles"
                  }
             }
         }
          stage('Prepare-JSON-files-to-upload') {
             steps {
                 echo "Uploading successfully checked files to JFrog.."
-                echo "Test Step - Value of textFiles = $textFiles"
+                echo "Test Step - Value of textFiles = $JSONFiles"
                
                 script {
                     
@@ -52,7 +52,7 @@ pipeline {
                     
                 uploadSpecJSON = uploadSpecSTART
                  sh "echo ${uploadSpecJSON}"
-                     def texts = pdfFiles.split('\n')
+                     def texts = JSONFiles.split('\n')
                      for (txt in texts) {
                          sh "echo ${txt}"
                          //sh "cat ${txt}"
