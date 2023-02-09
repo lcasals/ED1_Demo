@@ -1,6 +1,5 @@
-def textFiles = " "
-def uploadSpecTXT = " "
-def uploadSpecPDF = " "
+def JSONFiles = " "
+def uploadSpecJSON = " "
 def server = Artifactory.server 'artifactory'
 pipeline {
     agent {
