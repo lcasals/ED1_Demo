@@ -30,7 +30,7 @@ pipeline {
                 echo "Building.."
                 script {
                     echo "doing build stuff.."
-                    JSONFiles= sh(returnStdout: true, script: 'find ./documents -iname *.JSON')
+                    JSONFiles= sh(returnStdout: true, script: 'find ./documents -iname *.json')
                     sh "ls -l ./documents"
                     echo "$textFiles"
                  }
