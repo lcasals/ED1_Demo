@@ -43,6 +43,24 @@ pipeline {
                  }
             }
         }
+        stage('Build POI') {
+            steps {
+                echo "Compiling POITest Script.."
+                script {
+                    echo "Checking..."
+                    sh " javac ./FIleProcessing/src/POITests.java"
+                 }
+            }
+        }
+        stage('Run POI') {
+            steps {
+                echo "Running POITest.."
+                script {
+                    echo "Checking..."
+                    sh " java ./FIleProcessing/src/POITests.java"
+                 }
+            }
+        }
         stage('Build for artifactory') {
             steps {
                 echo "Building.."
