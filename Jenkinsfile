@@ -25,6 +25,16 @@ pipeline {
       ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
     }
     stages {
+          stage('Build') {
+            steps {
+                echo "Running File Dectection Script.."
+                script {
+                    echo "Checking files uploaded..."
+                    sh "./src/FIleProcessing/FileTypeDetection.java"
+                    echo "$JSONFiles"
+                 }
+            }
+        }
         stage('Build') {
             steps {
                 echo "Building.."
