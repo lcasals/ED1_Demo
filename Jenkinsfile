@@ -48,7 +48,7 @@ pipeline {
                 echo "Compiling POITest Script.."
                 script {
                     echo "Checking..."
-                    sh " javac ./FIleProcessing/src/POITests.java"
+                    sh " javac ./FIleProcessing/src/PoiTests.java"
                  }
             }
         }
@@ -57,7 +57,7 @@ pipeline {
                 echo "Running POITest.."
                 script {
                     echo "Checking..."
-                    sh " java ./FIleProcessing/src/POITests.java"
+                    sh " java ./FIleProcessing/src/PoiTests.java"
                  }
             }
         }
