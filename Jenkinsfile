@@ -35,7 +35,7 @@ pipeline {
                  }
             }
         }
-        stage('Build') {
+        stage('Build for artifactory') {
             steps {
                 echo "Building.."
                 script {
