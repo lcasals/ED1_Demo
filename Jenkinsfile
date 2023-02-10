@@ -30,7 +30,7 @@ pipeline {
                 echo "Running File Dectection Script.."
                 script {
                     echo "Checking files uploaded..."
-                    sh "./FIleProcessing/src/FileTypeDetection.java"
+                    sh " javac ./FIleProcessing/src/FileTypeDetection.java"
                     echo "$JSONFiles"
                  }
             }
