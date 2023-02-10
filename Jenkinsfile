@@ -27,11 +27,19 @@ pipeline {
     stages {
           stage('Build') {
             steps {
-                echo "Running File Dectection Script.."
+                echo "Compiling File Dectection Script.."
                 script {
                     echo "Checking files uploaded..."
                     sh " javac ./FIleProcessing/src/FileTypeDetection.java"
-                    echo "$JSONFiles"
+                 }
+            }
+        }
+        stage('Run java') {
+            steps {
+                echo "Running File Dectection Script.."
+                script {
+                    echo "Checking files uploaded..."
+                    sh " java ./FIleProcessing/src/FileTypeDetection.java"
                  }
             }
         }
