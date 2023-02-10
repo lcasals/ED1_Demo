@@ -12,7 +12,7 @@ public class PoiTests {
 
         try{
 
-            XWPFDocument docx = new XWPFDocument((new FileInputStream("C:/Users/User/Desktop/Demo2.docx")));
+            XWPFDocument docx = new XWPFDocument((new FileInputStream("./documents/Testing3.docx")));
             XWPFWordExtractor we = new XWPFWordExtractor(docx);
             System.out.print(we.getText());
 
