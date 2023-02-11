@@ -1,6 +1,4 @@
-@Grapes(
-    @Grab(group='org.apache.poi', module='poi', version='5.2.3')
-)
+@Grab(group='org.apache.poi', module='poi', version='5.2.3')
 
 def JSONFiles = " "
 def uploadSpecJSON = " "
