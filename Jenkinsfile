@@ -26,24 +26,6 @@ pipeline {
       ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
     }
     stages {
-          stage('Build') {
-            steps {
-                echo "Compiling File Dectection Script.."
-                script {
-                    echo "Checking files uploaded..."
-                    sh " javac ./FIleProcessing/src/FileTypeDetection.java"
-                 }
-            }
-        }
-         stage('Run POI') {
-             steps {
-                 echo "Running POITest.."
-                 script {
-                     echo "Checking..."
-                     sh " java ./FIleProcessing/src/PoiTests.java"
-                  }
-             }
-         }
         stage('Build for artifactory') {
             steps {
                 echo "Building.."
