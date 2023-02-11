@@ -1,5 +1,6 @@
-import org.apache.poi.xwpf.extractor.XWPFWordExtractor
-import org.apache.poi.xwpf.usermodel.XWPFDocument
+@Grab('org.apache.poi.xwpf.extractor.XWPFWordExtractor')
+@Grab('org.apache.poi.xwpf.usermodel.XWPFDocument')
+
 def JSONFiles = " "
 def uploadSpecJSON = " "
 def server = Artifactory.server 'artifactory'
