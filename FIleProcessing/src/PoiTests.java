@@ -1,3 +1,6 @@
+@Grapes(
+    @Grab(group='org.apache.poi', module='poi', version='5.2.3')
+)
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
