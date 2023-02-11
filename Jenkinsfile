@@ -1,5 +1,5 @@
-@Grab('org.apache.poi.xwpf.extractor.XWPFWordExtractor')
-@Grab('org.apache.poi.xwpf.usermodel.XWPFDocument')
+@Grab('org.apache.poi.xwpf.extractor.XWPFWordExtractor:5.2.3')
+@Grab('org.apache.poi.xwpf.usermodel.XWPFDocument:5.2.3')
 
 def JSONFiles = " "
 def uploadSpecJSON = " "
