@@ -35,24 +35,6 @@ pipeline {
                  }
             }
         }
-        stage('Run java') {
-            steps {
-                echo "Running File Dectection Script.."
-                script {
-                    echo "Checking files uploaded..."
-                    sh " java ./FIleProcessing/src/FileTypeDetection.java"
-                 }
-            }
-        }
-        stage('Build POI') {
-             steps {
-                 echo "Compiling POITest Script.."
-                 script {
-                     echo "Checking..."
-                     sh " javac ./FIleProcessing/src/PoiTests.java"
-                  }
-             }
-         }
          stage('Run POI') {
              steps {
                  echo "Running POITest.."
